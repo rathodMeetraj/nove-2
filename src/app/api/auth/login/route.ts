@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import dbConnect from "@/lib/mongodb";
-import User from "@/models/User";
+import supabase from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
-    await dbConnect();
     const { email, password } = await request.json();
 
     if (!email || !password) {
@@ -18,13 +16,17 @@ export async function POST(request: Request) {
         success: true,
         user: { name: "NOVE Administrator", email: "admin@nove.in" },
         isAdmin: true,
-        message: "Admin access granted"
+        message: "Admin access granted",
       });
     }
 
-    const user = await User.findOne({ email });
+    const { data: user, error } = await supabase
+      .from("users")
+      .select("id, name, email, password")
+      .eq("email", email.toLowerCase().trim())
+      .single();
 
-    if (!user) {
+    if (error || !user) {
       return NextResponse.json({ error: "No account found with this email." }, { status: 404 });
     }
 
@@ -33,10 +35,13 @@ export async function POST(request: Request) {
       const [salt, storedHash] = user.password.split(":");
       const derivedKey = crypto.scryptSync(password, salt, 64).toString("hex");
       // Use constant-time comparison to prevent timing attacks
-      isValid = crypto.timingSafeEqual(Buffer.from(storedHash, "hex"), Buffer.from(derivedKey, "hex"));
+      isValid = crypto.timingSafeEqual(
+        Buffer.from(storedHash, "hex"),
+        Buffer.from(derivedKey, "hex")
+      );
     } else {
-      // Fallback for any old cleartext passwords just in case during transition
-      isValid = (user.password === password);
+      // Fallback for any old cleartext passwords during transition
+      isValid = user.password === password;
     }
 
     if (!isValid) {
@@ -45,16 +50,15 @@ export async function POST(request: Request) {
 
     console.log(`[AUTH] User signed in: ${email}`);
 
-    // Return the user data (excluding password)
     return NextResponse.json({
       success: true,
       user: {
         name: user.name,
         email: user.email,
       },
-      message: "Signed in successfully"
+      message: "Signed in successfully",
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }

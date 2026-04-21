@@ -20,6 +20,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const craftsmanshipRef = useRef<HTMLElement>(null);
   const bentoRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [introDone, setIntroDone] = useState(false);
 
@@ -46,8 +47,8 @@ export default function Home() {
   });
 
   // Section 1: Hero Transforms
-  const heroOpacity = useTransform(scrollY, [0, 2100, 2400], [1, 1, 0]);
-  const heroParallax = useTransform(scrollY, [0, 2600], [0, 1300]);
+  const heroOpacity = useTransform(scrollY, [0, 1500, 1800], [1, 1, 0]);
+  const heroParallax = useTransform(scrollY, [0, 1800], [0, 900]);
 
   // Section 2: Craftsmanship Island Morphing
   const craftsmanshipScale = useTransform(craftsmanshipScroll, [0, 0.4, 0.6, 1], [0.85, 1, 1, 0.85]);
@@ -61,7 +62,7 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="flex flex-col bg-[#fbfbfd] min-h-screen">
-      <HangingBag onDropComplete={() => setIntroDone(true)} />
+      <HangingBag onDropComplete={() => setIntroDone(true)} cardRef={cardRef} />
       
       <motion.div
          initial="hidden"
@@ -77,7 +78,7 @@ export default function Home() {
          className="w-full flex-grow flex flex-col"
       >
         {/* 1. Ethereal Liquid Hero */}
-          <section className="relative h-[2600px] w-full flex flex-col items-center pt-[15vh]">
+          <section className="relative h-[1800px] w-full flex flex-col items-center pt-[15vh]">
         {/* Soft Background Liquid Blobs */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div 
@@ -130,7 +131,7 @@ export default function Home() {
             className="relative z-20 w-full max-w-[90vw] md:max-w-[450px] aspect-[4/3] md:aspect-[3/2] flex-shrink-0 mb-10"
           >
             {/* Glass Case Overlay Effect */}
-            <div className="relative w-full h-full glass-display rounded-[40px] md:rounded-[60px] p-8 md:p-12 overflow-hidden shadow-2xl">
+            <div ref={cardRef} className="relative w-full h-full glass-display rounded-[40px] md:rounded-[60px] p-8 md:p-12 overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none z-10" />
               
               <AnimatePresence mode="wait">

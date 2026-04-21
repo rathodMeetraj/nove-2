@@ -1,29 +1,28 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/mongodb";
-import Order from "@/models/Order";
+import supabase from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
-    await dbConnect();
     const { orderId, newStatus } = await request.json();
 
     if (!orderId || !newStatus) {
       return NextResponse.json({ error: "Order ID and new status are required" }, { status: 400 });
     }
 
-    // 1. Update in Database
-    const updatedOrder = await Order.findOneAndUpdate(
-      { id: orderId },
-      { $set: { status: newStatus } },
-      { new: true }
-    );
+    // 1. Update status in Supabase
+    const { data: updatedOrder, error } = await supabase
+      .from("orders")
+      .update({ status: newStatus, updated_at: new Date().toISOString() })
+      .eq("id", orderId)
+      .select()
+      .single();
 
-    if (!updatedOrder) {
+    if (error || !updatedOrder) {
+      console.error("Supabase status update error:", error);
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
-    const customerEmail = updatedOrder.customerEmail;
-
+    const customerEmail = updatedOrder.customer_email as string;
     console.log(`[STATUS UPDATE] Order ${orderId} updated to ${newStatus}`);
 
     // 2. Send Automated Status Update Email to Customer
@@ -51,9 +50,9 @@ export async function POST(request: Request) {
         statusDescription = "Your artisan masterpiece has arrived. We hope it exceeds your every expectation.";
       }
 
-      const itemsHtml = updatedOrder.items.map((item: any) => 
-        `<li>${item.name} (${item.color})</li>`
-      ).join("");
+      const itemsHtml = (updatedOrder.items as Array<{ name: string; color: string }>)
+        .map((item) => `<li>${item.name} (${item.color})</li>`)
+        .join("");
 
       await transporter.sendMail({
         from: `"NOVE Luxury" <${process.env.SMTP_EMAIL}>`,
@@ -98,9 +97,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: `Status updated to ${newStatus} and customer notified.`
+      message: `Status updated to ${newStatus} and customer notified.`,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Status update error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }

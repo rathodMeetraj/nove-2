@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import dbConnect from "@/lib/mongodb";
-import User from "@/models/User";
+import supabase from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
-    await dbConnect();
     const { name, email, password } = await request.json();
 
     if (!email || !password || !name) {
@@ -15,7 +13,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const existingUser = await User.findOne({ email });
+    // Check if user already exists
+    const { data: existingUser } = await supabase
+      .from("users")
+      .select("id")
+      .eq("email", email.toLowerCase().trim())
+      .single();
 
     if (existingUser) {
       return NextResponse.json(
@@ -29,11 +32,16 @@ export async function POST(request: Request) {
     const derivedKey = crypto.scryptSync(password, salt, 64).toString("hex");
     const hashedPassword = `${salt}:${derivedKey}`;
 
-    await User.create({
+    const { error } = await supabase.from("users").insert({
       name,
-      email,
+      email: email.toLowerCase().trim(),
       password: hashedPassword,
     });
+
+    if (error) {
+      console.error("Supabase insert error:", error);
+      return NextResponse.json({ error: "Failed to create account." }, { status: 500 });
+    }
 
     console.log(`[AUTH] Registered new user: ${email}`);
 
@@ -41,7 +49,7 @@ export async function POST(request: Request) {
       success: true,
       message: "Account created successfully",
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Registration error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
