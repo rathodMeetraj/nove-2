@@ -1,0 +1,181 @@
+
+> temp_nove@0.1.0 lint
+> eslint
+
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/admin/page.tsx
+    8:3    warning  'Users' is defined but never used         @typescript-eslint/no-unused-vars
+   10:3    warning  'TrendingUp' is defined but never used    @typescript-eslint/no-unused-vars
+   50:38   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  224:39   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  226:43   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  226:84   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  226:124  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/api/admin/orders/status/route.ts
+  30:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/api/auth/send-email-otp/route.ts
+   6:18  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/api/auth/verify-email-otp/route.ts
+  11:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/api/verify/route.ts
+  23:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/faq/page.tsx
+  5:16  warning  'Minus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/login/page.tsx
+  55:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/page.tsx
+  34:28  warning  'mainScrollY' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/policy/page.tsx
+  50:153  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/product/[id]/page.tsx
+    4:21   warning  'ChevronRight' is defined but never used                         @typescript-eslint/no-unused-vars
+    4:62   warning  'ShieldAlert' is defined but never used                          @typescript-eslint/no-unused-vars
+  100:100  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/profile/page.tsx
+    7:60  warning  'Clock' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+    7:67  warning  'CreditCard' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   16:10  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  257:27  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/app/shipping/page.tsx
+   4:42  warning  'Mail' is defined but never used                                 @typescript-eslint/no-unused-vars
+  44:61  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  44:72  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/ArtisanAnatomy.tsx
+   58:9   warning  'mainOpacity' is assigned a value but never used                                                                                                        @typescript-eslint/no-unused-vars
+  121:26  error    React Hook "useTransform" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+  122:26  error    React Hook "useTransform" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+  123:31  error    React Hook "useTransform" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+  125:36  error    React Hook "useTransform" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+  126:37  error    React Hook "useTransform" cannot be called inside a callback. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/ArtisanRecommendations.tsx
+  10:58  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-explicit-any
+  18:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/ArtisanRecommendations.tsx:18:5
+  16 |       .sort(() => 0.5 - Math.random())
+  17 |       .slice(0, 4);
+> 18 |     setRecommendations(shuffled);
+     |     ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |   }, [currentProductId]);
+  20 |
+  21 |   if (recommendations.length === 0) return null;  react-hooks/set-state-in-effect
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/AuthProvider.tsx
+  28:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/AuthProvider.tsx:28:9
+  26 |     if (savedUser) {
+  27 |       try {
+> 28 |         setUser(JSON.parse(savedUser));
+     |         ^^^^^^^ Avoid calling setState() directly within an effect
+  29 |       } catch (e) {
+  30 |         console.error("Failed to parse saved user session");
+  31 |         localStorage.removeItem("nove_user");  react-hooks/set-state-in-effect
+  29:16  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/CartDrawer.tsx
+   14:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  109:35  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  128:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  129:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  158:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  187:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/OrderTimeline.tsx
+  4:17  warning  'Box' is defined but never used          @typescript-eslint/no-unused-vars
+  6:6   warning  'OrderStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/ProductActions.tsx
+  28:9  warning  'router' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/ProductReviews.tsx
+  83:15  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  83:32  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/RecentlyViewed.tsx
+  22:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/RecentlyViewed.tsx:22:9
+  20 |     if (saved) {
+  21 |       try {
+> 22 |         setList(JSON.parse(saved));
+     |         ^^^^^^^ Avoid calling setState() directly within an effect
+  23 |       } catch (e) {
+  24 |         setList([]);
+  25 |       }  react-hooks/set-state-in-effect
+  23:16  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/RecentlyViewedTracker.tsx
+  19:16  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/SearchOverlay.tsx
+  25:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/SearchOverlay.tsx:25:7
+  23 |     } else {
+  24 |       document.body.style.overflow = "unset";
+> 25 |       setQuery("");
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  26 |     }
+  27 |   }, [isOpen]);
+  28 |  react-hooks/set-state-in-effect
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/WishlistProvider.tsx
+  28:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/meetrajsinhrathod/Documents/BE/Projects/Assignment/Nova bags/src/components/WishlistProvider.tsx:28:9
+  26 |     if (savedWishlist) {
+  27 |       try {
+> 28 |         setWishlist(JSON.parse(savedWishlist));
+     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  29 |       } catch (e) {
+  30 |         console.error("Failed to parse wishlist from localStorage", e);
+  31 |       }  react-hooks/set-state-in-effect
+
+✖ 53 problems (36 errors, 17 warnings)
+
